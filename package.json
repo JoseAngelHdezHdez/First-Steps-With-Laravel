@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "start" : "nodemon resources/views/test/index.blade.php"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "laravel-vite-plugin": "^0.7.2",
+        "nodemon": "^2.0.22",
+        "vite": "^4.0.0"
+    }
+}
