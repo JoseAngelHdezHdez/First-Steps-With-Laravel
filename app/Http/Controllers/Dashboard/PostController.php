@@ -19,7 +19,7 @@ class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */ 
+     */
     public function index(): View
     {
         // return route("post.create");
@@ -40,11 +40,8 @@ class PostController extends Controller
      */
     public function create(): View
     {
-        $categories = Category::pluck('id', 'title');
-
-        $post = new Post();
+        $category = new Category();
         // dd($categories);
-
         return view('dashboard.post.create', compact('categories', 'post'));
     }
 
