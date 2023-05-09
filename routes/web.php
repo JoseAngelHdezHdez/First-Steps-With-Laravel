@@ -5,6 +5,7 @@
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\PrubController;
+use App\Http\Middleware\TestMiddleware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,41 @@ Route::get('/', function (){
 });
 
 
-Route::resource('post', PostController::class);
-Route::resource('category', CategoryController::class);
+
+Route::group(['prefix' => 'dashboard'], function() {
+    Route::resource('post', PostController::class)->only(['show']);
+    Route::resource('category', CategoryController::class)->except(['store']);
+
+    // Route::resource([
+    //     'post' => PostController::class,
+    //     'category' => CategoryController::class
+    // ]);
+});
+
+
+//Ejemplo de Route Middleware
+// Route::middleware([TestMiddleware::class])->group(function () {
+
+//     Route::get('/test/{id?}/{name}', function($id = 10, $name = 'pepe'){
+//         echo $id;
+//         echo $name;
+//     });
+
+// });
+/////////////////////////////////////////////////
+
+//Ejemplos de Route controller
+// Route::controller(PostController::class)->group(function (){
+//     Route::get('post', 'index')->name("post.index");
+//     Route::get('post/{post}', 'show')->name("post.show");
+//     Route::get('post/create', 'create')->name("post.create");
+//     Route::get('post/{post}/edit', 'edit')->name("post.edit");
+
+//     Route::post('post', 'store')->name("post.store");
+//     Route::patch('post/{post}', 'update')->name("post.update");
+//     Route::delete('post/{post}', 'destroy')->name("post.destroy");
+// });
+////////////////////////////////////////////////
 
 // Route::get('post', [PostController::class, 'index']);
 // Route::get('post/{post}', [PostController::class, 'show']);

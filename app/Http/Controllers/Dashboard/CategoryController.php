@@ -32,7 +32,7 @@ class CategoryController extends Controller
         // echo view('dashboard.category.index', ["categories" => $categories]);
         return view('dashboard.category.index', compact('categories'));
 
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
